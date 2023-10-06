@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NZWalks.API.Models.Domain;
 
 namespace NZWalks.API.Data
 {
@@ -10,6 +11,9 @@ namespace NZWalks.API.Data
         }
 
         //now create DbSets --> property of dbcontext class that represent a collection of entities in database
-
+        //these three propereties will create tebles in database
+        public DbSet<Difficulty> Difficulties { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<Walk> Walks { get; set; }
     }
 }
