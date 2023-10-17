@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using NZWalks.API.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//injecting nzwalksdbcontext so that we can later use the context class inside controllers and repositories
+//options is an instance of AddDbContext<NZWalksDbContext>,  defines how to configure the DbContextOptionsBuilder for the NZWalksDbContext
+builder.Services.AddDbContext<NZWalksDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("NZWalksConnectionString")));
 
 var app = builder.Build();
 
